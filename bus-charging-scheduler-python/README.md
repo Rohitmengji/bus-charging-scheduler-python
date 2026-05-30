@@ -2,6 +2,13 @@
 
 A Streamlit application that schedules electric bus charging along a fixed route using an event-driven simulation with a weighted priority queue.
 
+This repository is organized with the app code inside the `bus-charging-scheduler-python/` folder.
+If you are starting from the repository root, first run:
+
+```bash
+cd bus-charging-scheduler-python
+```
+
 ---
 
 ## Route
@@ -21,6 +28,7 @@ Bengaluru → A → B → C → D → Kochi
 ## How to Run Locally
 
 ```bash
+cd bus-charging-scheduler-python
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -32,20 +40,37 @@ Open `http://localhost:8501` in your browser.
 ## Project Structure
 
 ```
-bus-charging-scheduler/
-├── app.py              # Streamlit UI (display only, no business logic)
-├── scheduler.py        # Event-driven simulation engine
-├── models.py           # Dataclasses for all domain objects
-├── scenarios/
-│   ├── scenario_1.json  # Even Spacing
-│   ├── scenario_2.json  # Bunched Start
-│   ├── scenario_3.json  # Asymmetric Load
-│   ├── scenario_4.json  # Operator Heavy (fairness test)
-│   └── scenario_5.json  # Worst Case Convergence
-├── requirements.txt
-├── README.md
-└── ARCHITECTURE.md
+repo-root/
+├── bus-charging-scheduler-python/
+│   ├── app.py              # Streamlit UI (display only, no business logic)
+│   ├── scheduler.py        # Event-driven simulation engine
+│   ├── models.py           # Dataclasses for all domain objects
+│   ├── scenarios/
+│   │   ├── scenario_1.json  # Even Spacing
+│   │   ├── scenario_2.json  # Bunched Start
+│   │   ├── scenario_3.json  # Asymmetric Load
+│   │   ├── scenario_4.json  # Operator Heavy (fairness test)
+│   │   └── scenario_5.json  # Worst Case Convergence
+│   ├── requirements.txt
+│   ├── README.md
+│   └── ARCHITECTURE.md
+└── .gitignore
 ```
+
+---
+
+## Interviewer Walkthrough (Fast)
+
+1. `cd bus-charging-scheduler-python`
+2. `pip install -r requirements.txt`
+3. `streamlit run app.py`
+4. In the app, switch between scenarios from the dropdown.
+5. Review outputs in three tabs:
+  - Scenario Input
+  - Per-Bus Timetable
+  - Per-Station View
+
+For design rationale and extension strategy, see `ARCHITECTURE.md`.
 
 ---
 
@@ -83,7 +108,7 @@ No code changes required.
 
 ## How to Add a New Scenario
 
-1. Copy any existing JSON file: `cp scenarios/scenario_1.json scenarios/scenario_6.json`
+1. From `bus-charging-scheduler-python/`, copy any existing JSON file: `cp scenarios/scenario_1.json scenarios/scenario_6.json`
 2. Edit `meta.scenario_id`, `meta.name`, `meta.description`
 3. Change the `buses` array (id, operator, direction, departure_time)
 4. Optionally change `weights` or `world`
@@ -106,6 +131,6 @@ Short version:
 
 1. Push this repo to GitHub
 2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect repo → set main file to `app.py` → Deploy
+3. Connect repo → set main file to `bus-charging-scheduler-python/app.py` → Deploy
 
 No environment variables needed.

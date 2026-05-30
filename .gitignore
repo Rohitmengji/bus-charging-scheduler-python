@@ -1,0 +1,9 @@
+# Local automation scripts (do not publish)
+push-personal.sh
+
+# Python cache artifacts
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
